@@ -1,15 +1,15 @@
 ---
-title: Item 12
+title: Item 12 使⽤ override 声明重载函数
 tags: ["现代C++", "override"]
 categories: [Effective Modern C++]
-description: 'Item12：使⽤ override 声明重载函数'
-date: 2024-07-19 20:19:21
-cover: https://s2.loli.net/2024/07/21/fYeJAjM9On7V5uy.jpg
+description: '使⽤ override 声明重载函数'
+date: 2024-07-21 15:10:21
+cover: https://s2.loli.net/2024/07/21/5J8kxLaoYrCZTs6.jpg
 ---
 
 # 条款12：使⽤ override 声明重载函数
 
-在C++⾯向对象的世界⾥，涉及的概念有类，继承，虚函数。这个世界最基本的概念是派⽣类的虚函数重写基类同名函数。鉴于 **"重写"** 听起来像 **"重载"**，尽管两者完全不相关，下⾯就通过⼀个派⽣类和基类来说明**什么是虚函数重写**
+在C++⾯向对象的世界里，涉及的概念有类，继承，虚函数。这个世界最基本的概念是派⽣类的虚函数重写基类同名函数。鉴于 **"重写"** 听起来像 **"重载"**，尽管两者完全不相关，下⾯就通过⼀个派⽣类和基类来说明**什么是虚函数重写**
 
 ```cpp
 class Base {
@@ -19,7 +19,7 @@ public:
 };
 class Derived: public Base {
 public:
-    virtual void doWork(); // 重写Base::doWork(这⾥"virtual"是可以省略的)
+    virtual void doWork(); // 重写Base::doWork(这里"virtual"是可以省略的)
     …
 };
 std::unique_ptr<Base> upb = std::make_unique<Derived>();// 创建基类指针指向派⽣类对象关于std：：make_unique请参⻅Item1
@@ -34,7 +34,7 @@ upb->doWork(); // 通过基类指针调⽤doWork实际上是派⽣类的 doWork 
 - 基类和派⽣类函数常量性必须完全⼀样
 - 基类和派⽣类函数的返回值和异常说明必须兼容
 
- d 除了这些 C++98 就存在的约束外，C++11 ⼜添加了⼀个：
+除了这些 C++98 就存在的约束外，C++11 ⼜添加了⼀个：
 - 函数的引⽤限定符必须完全⼀样。成员函数的引⽤限定符是 C++11 很少抛头露脸的特性，所以如果你从没听过它⽆需惊讶。它可以限定成员函数只能⽤于左值或者右值。成员函数不需要 `virtual` 也能使⽤它们：
 
 ```cpp
